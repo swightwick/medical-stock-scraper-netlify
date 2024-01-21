@@ -1,0 +1,85 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Netlify Puppeteer Test</title>
+    <meta name="description" content="" />
+
+    <style>
+      body {
+        background: #e6f3fe;
+        color: #190066;
+        font-family: 'Poppins', sans-serif;
+        padding: 20px;
+      }
+      h1{
+        padding: 0 15px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      ul li{
+        padding: 15px 15px;
+        border-bottom: 1px solid #c5d1db;
+        font-size: 28px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        transition: all .25s;
+        background: #e6f3fe;
+        color: #190066;
+        font-weight: 200;
+      }
+      ul li:hover {
+        border-bottom: 1px solid transparent;
+        background:#190066;
+        color: #e6f3fe;
+        transition: all .5s;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      h1 {
+        letter-spacing: -1px;
+      }
+      .flower {
+        font-weight: 200;
+      }
+      .price {
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Netlify Puppeteer Test</h2>
+    <div class="news">Loading news…</div>
+
+    <script>
+      const newsEl = document.querySelector('.news')
+
+      const getPuppeteerData = async () => {
+        const puppetData = await fetch('/.netlify/functions/puppet')
+        const news = await puppetData.json()
+        return news
+      }
+
+      ;(async () => {
+        const news = await getPuppeteerData()
+        const items = news
+          .map((item) => {
+            return `<div><h2>${item.item.flower}</a></h2>`
+          })
+          .join('')
+
+        newsEl.innerHTML = items
+      })()
+    </script>
+  </body>
+</html>
