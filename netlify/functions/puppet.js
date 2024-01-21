@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer-core'
 
 chromium.setHeadlessMode = true
 chromium.setGraphicsMode = false
-const url = 'https://lite.cnn.com/'
+const url = 'https://www.mamedica.co.uk/repeat-prescription/'
 
 export async function handler(event, context) {
 
@@ -21,16 +21,26 @@ export async function handler(event, context) {
 
     await page.goto(url)
 
-    await page.waitForSelector('.title')
 
-    const results = await page.$$eval('ul li', (articles) => {
-      return articles.map((link) => {
-        return {
-          title: link.querySelector('a').innerText,
-          url: link.querySelector('a').href,
-        }
-      })
-    })
+    await page.waitForSelector('#field_3_31')
+    console.log('here 3');
+    await page.click('#label_3_31_0');
+    await page.click('#label_3_45_0');
+    await page.click('#label_3_32_0');
+    console.log('here 4');
+    await page.waitForSelector('#field_3_50 .selectric-scroll')
+    console.log('here 5');
+
+
+
+    // const results = await page.$$eval('ul li', (articles) => {
+    //   return articles.map((link) => {
+    //     return {
+    //       title: link.querySelector('a').innerText,
+    //       url: link.querySelector('a').href,
+    //     }
+    //   })
+    // })
 
     await browser.close()
 
