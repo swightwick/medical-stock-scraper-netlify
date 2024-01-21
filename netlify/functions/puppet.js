@@ -21,12 +21,15 @@ export async function handler(event, context) {
     console.log('here 1');
     await page.goto('https://www.mamedica.co.uk/repeat-prescription/');
     console.log('here 2');
+    await page.waitForTimeout(100) 
     await page.waitForSelector('#field_3_31')
+    console.log('here 3');
     await page.click('#label_3_31_0');
     await page.click('#label_3_45_0');
     await page.click('#label_3_32_0');
+    console.log('here 4');
     await page.waitForSelector('#field_3_50 .selectric-scroll')
-    console.log('here 3');
+    console.log('here 5');
     
     // capture all the items in stock list
     let elements = await page.$$('#field_3_50 .selectric-scroll ul li');
