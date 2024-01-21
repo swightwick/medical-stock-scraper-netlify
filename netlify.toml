@@ -9,4 +9,4 @@
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["@sparticuz/chromium"]
-  myFunction = { timeout = 60 }
+  scrape = { timeout = 60 }
