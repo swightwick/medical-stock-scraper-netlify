@@ -13,13 +13,12 @@ export async function handler(event, context) {
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath('/var/task/node_modules/@sparticuz/chromium/bin')),
+      executablePath: await chromium.executablePath('/var/task/node_modules/@sparticuz/chromium/bin'),
     })
-    let site = 'https://www.mamedica.co.uk/repeat-prescription/'
 
-    console.log('Opening Browser');
+    console.log('Opening Browser - pup script');
     const page = await browser.newPage();
-    await page.goto(site);
+    await page.goto('https://www.mamedica.co.uk/repeat-prescription/');
     await page.setViewport({width: 1080, height: 1024});
     await page.waitForSelector('#field_3_31')
     await page.click('#label_3_31_0');
@@ -63,8 +62,7 @@ export async function handler(event, context) {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        availableFlowers,
-        lastScrapeTimestamp,
+        availableFlowers
       }),
     }
   } catch (error) {
