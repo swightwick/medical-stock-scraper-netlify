@@ -1,12 +1,8 @@
 # example netlify.toml
-[build]
-  functions = "netlify/functions"
-  publish = "."
-
 [dev]
   autoLaunch = false
 
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["@sparticuz/chromium"]
-  scrape = { timeout = 60 }
+  puppet = { timeout = 60 }
