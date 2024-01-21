@@ -5,8 +5,9 @@ exports.handler = async function (event, context) {
 
   try {
     let site = 'https://www.mamedica.co.uk/repeat-prescription/'
-    const browser = await puppeteer.launch({ 
-      headless: true
+    const browser = await puppeteer.launch({
+      executablePath: process.env.CHROME_BIN || '/opt/buildhome/.netlify/functions/scrape.js', // Adjust the path based on your Netlify setup
+      headless: true,
     });
     console.log('Opening Browser');
     const page = await browser.newPage();
