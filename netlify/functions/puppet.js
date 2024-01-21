@@ -3,6 +3,7 @@ import puppeteer from 'puppeteer-core'
 
 chromium.setHeadlessMode = true
 chromium.setGraphicsMode = false
+const url = 'https://lite.cnn.com/'
 
 export async function handler(event, context) {
 
