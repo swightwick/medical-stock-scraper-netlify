@@ -18,13 +18,15 @@ export async function handler(event, context) {
 
     console.log('Opening Browser - pup script');
     const page = await browser.newPage();
+    console.log('here 1');
     await page.goto('https://www.mamedica.co.uk/repeat-prescription/');
-    await page.setViewport({width: 1080, height: 1024});
+    console.log('here 2');
     await page.waitForSelector('#field_3_31')
     await page.click('#label_3_31_0');
     await page.click('#label_3_45_0');
     await page.click('#label_3_32_0');
     await page.waitForSelector('#field_3_50 .selectric-scroll')
+    console.log('here 3');
     
     // capture all the items in stock list
     let elements = await page.$$('#field_3_50 .selectric-scroll ul li');
