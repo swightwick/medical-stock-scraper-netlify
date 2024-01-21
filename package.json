@@ -5,6 +5,6 @@
     "puppeteer": "^21.7.0"
   },
   "scripts": {
-    "start": "npm install && node scrape.js"
+    "start": "npx puppeteer browsers install chrome && node scrape.js"
   }
 }
