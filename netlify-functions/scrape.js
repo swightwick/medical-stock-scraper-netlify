@@ -1,5 +1,4 @@
-const puppeteer = require('puppeteer');
-
+const puppeteer = require('puppeteer-core');
 exports.handler = async function (event, context) {
   let availableFlowers = [];
   let lastScrapeTimestamp = '';
