@@ -13,6 +13,7 @@ export async function handler(event, context) {
   try {
     const browser = await puppeteer.launch({
       args: chromium.args,
+      ignoreDefaultArgs: ['--disable-extensions'],
       defaultViewport: chromium.defaultViewport,
       executablePath: process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath('/var/task/node_modules/@sparticuz/chromium/bin')),
     })
