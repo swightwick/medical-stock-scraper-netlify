@@ -1,4 +1,4 @@
-import chromium from '@sparticuz/chromium'
+const chromium = require('@sparticuz/chromium-min');
 import puppeteer from 'puppeteer-core'
 
 chromium.setHeadlessMode = true
@@ -12,10 +12,13 @@ export async function handler(event, context) {
 
   try {
     const browser = await puppeteer.launch({
-      args: chromium.args,
-      ignoreDefaultArgs: ['--disable-extensions'],
+      args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
       defaultViewport: chromium.defaultViewport,
-      executablePath: process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath('/var/task/node_modules/@sparticuz/chromium/bin')),
+      executablePath: await chromium.executablePath(
+        `https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar`
+      ),
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
     })
 
     console.log('Opening Browser - pup script');
