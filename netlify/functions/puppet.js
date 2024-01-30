@@ -1,4 +1,4 @@
-const chromium = require('@sparticuz/chromium-min');
+const chromium = require('@sparticuz/chromium');
 import puppeteer from 'puppeteer-core'
 
 chromium.setHeadlessMode = true
